@@ -20,6 +20,7 @@ Web systems student environment
 - [VirtualBox] (https://www.virtualbox.org/) 
 - [Vagrant] (https://www.vagrantup.com/) Рекомендуемая версия 1.4.0 работает стабильно. 
 - Vagrant hosts updater
+- Vagrant Vbox Guest edition
 
 ## Установка Vagrant HostsUpdater
 
@@ -27,6 +28,13 @@ Web systems student environment
 
 `$ vagrant plugin install vagrant-hostsupdater`
 
+
+
+## Установка Vagrant Vbox Guest edition
+
+После установки Vagrant выполните в консоле команду
+
+`$ vagrant plugin install vagrant-vbguest`
 
 ## Подробное описание установки и конфигурирования необходимого ПО
 
@@ -42,7 +50,7 @@ Web systems student environment
 - Принять [Pull Request] (https://help.github.com/articles/merging-a-pull-request/) сделаный преподавателем в ваш репозиторий.
 - `$ git pull` - Или любой другой способ забрать последную версию кода
 - `$ vagrant destroy` - уничтожение текущей виртуалки. ВНИМАНИЕ: все данные в БД будут потеряны. Если нужно сделайте предварительно дамп БД.
-- `$ vagrant box remove webdeb` - Удаление текущего базового образа
+- `$ vagrant box remove webdb` - Удаление текущего базового образа
 - `$ vagrant up` - Создание виртуалки. Vagrant сам скачает новую версию базового образа.
  
 # Виртуальные хосты
