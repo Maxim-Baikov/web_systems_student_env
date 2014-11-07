@@ -30,6 +30,12 @@ class CreateExtraTable extends AbstractMigration
           PRIMARY KEY (`id`),
           KEY `req_id` (`req_id`),
           KEY `ser_id` (`ser_id`)
+          ADD CONSTRAINT `extra_ibfk_1`
+          FOREIGN KEY (`req_id`)
+          REFERENCES `request` (`id`),
+          ADD CONSTRAINT `extra_ibfk_2`
+          FOREIGN KEY (`ser_id`)
+          REFERENCES `services` (`id`);
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 SQL;
       $this->execute($sql); 

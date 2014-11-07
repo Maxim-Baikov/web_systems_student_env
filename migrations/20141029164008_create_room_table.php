@@ -12,22 +12,21 @@ class CreateRoomTable extends AbstractMigration
      *
      * Uncomment this method if you would like to use it.
      *
-    public function change()
-    {
-    }
-    */
-    
+     * public function change()
+     * {
+     * }
+     */
+
     /**
      * Migrate Up.
      */
     public function up()
     {
-    $sql = <<<SQL
+        $sql = <<<SQL
     CREATE TABLE IF NOT EXISTS `room` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) NOT NULL,
   `number` int(11) NOT NULL,
-  `status` varchar(64) NOT NULL,
   `task_id` int(11) DEFAULT NULL,
   `image` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
@@ -35,9 +34,18 @@ class CreateRoomTable extends AbstractMigration
   KEY `number` (`number`),
   KEY `type` (`type`),
   KEY `type_2` (`type`)
+  ADD CONSTRAINT `room_ibfk_2`
+  FOREIGN KEY (`task_id`)
+  REFERENCES `task` (`id`),
+  ADD CONSTRAINT `room_ibfk_3`
+  FOREIGN KEY (`number`)
+  REFERENCES `floors` (`number`),
+  ADD CONSTRAINT `room_ibfk_4`
+  FOREIGN KEY (`type`)
+  REFERENCES `description_room` (`type`);
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 SQL;
-      $this->execute($sql); 
+        $this->execute($sql);
     }
 
     /**

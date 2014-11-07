@@ -30,6 +30,12 @@ CREATE TABLE IF NOT EXISTS `staff` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `post` (`post`)
+  ADD CONSTRAINT `staff_ibfk_1`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `user` (`id`),
+  ADD CONSTRAINT `staff_ibfk_2`
+  FOREIGN KEY (`post`)
+  REFERENCES `post` (`name`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 SQL;
       $this->execute($sql); 

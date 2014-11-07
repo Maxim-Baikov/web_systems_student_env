@@ -31,6 +31,9 @@ class CreateTaskTable extends AbstractMigration
   `link` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shift_id` (`shift_id`)
+  ADD CONSTRAINT `task_ibfk_1`
+  FOREIGN KEY (`shift_id`)
+  REFERENCES `shift` (`id`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 SQL;
       $this->execute($sql); 

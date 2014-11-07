@@ -34,6 +34,12 @@ class CreateRequestTable extends AbstractMigration
   PRIMARY KEY (`id`),
   KEY `client_id` (`client_id`,`room_id`),
   KEY `room_id` (`room_id`)
+  ADD CONSTRAINT `request_ibfk_1`
+  FOREIGN KEY (`client_id`)
+  REFERENCES `client` (`id`),
+  ADD CONSTRAINT `request_ibfk_2`
+  FOREIGN KEY (`room_id`)
+  REFERENCES `room` (`id`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 SQL;
       $this->execute($sql); 

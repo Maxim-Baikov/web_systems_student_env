@@ -29,6 +29,9 @@ CREATE TABLE IF NOT EXISTS `floors` (
   `number` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `number` (`number`)
+  ADD CONSTRAINT `floors_ibfk_2`
+  FOREIGN KEY (`fask_id`)
+  REFERENCES `task` (`id`);
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 SQL;
       $this->execute($sql); 
