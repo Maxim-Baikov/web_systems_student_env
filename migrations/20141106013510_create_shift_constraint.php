@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateServicesTable extends AbstractMigration
+class CreateShiftConstraint extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,15 +22,12 @@ class CreateServicesTable extends AbstractMigration
      */
     public function up()
     {
-    $sql = <<<SQL
-CREATE TABLE IF NOT EXISTS `services` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+$sql = <<<SQL
+ALTER TABLE `shift` ADD FOREIGN KEY ( `staff_id` ) REFERENCES `webdb`.`staff` (
+`id`
+) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
-      $this->execute($sql); 
+        $this->execute($sql);
     }
 
     /**

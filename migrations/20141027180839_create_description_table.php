@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `description_room` (
   `description` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `type` (`type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 SQL;
         $this->execute($sql);
     }

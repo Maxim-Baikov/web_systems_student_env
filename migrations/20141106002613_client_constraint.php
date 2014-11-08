@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateServicesTable extends AbstractMigration
+class ClientConstraint extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,25 +12,20 @@ class CreateServicesTable extends AbstractMigration
      *
      * Uncomment this method if you would like to use it.
      *
-    public function change()
-    {
-    }
-    */
-    
+     * public function change()
+     * {
+     * }
+     */
+
     /**
      * Migrate Up.
      */
     public function up()
     {
-    $sql = <<<SQL
-CREATE TABLE IF NOT EXISTS `services` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+        $sql = <<<SQL
+ ALTER TABLE `client` ADD FOREIGN KEY ( `user_id` ) REFERENCES `webdb`.`user` ( `id` ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
-      $this->execute($sql); 
+        $this->execute($sql);
     }
 
     /**

@@ -27,9 +27,8 @@ CREATE TABLE IF NOT EXISTS `post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `salary` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 SQL;
       $this->execute($sql); 
     }

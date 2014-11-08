@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `image` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
 SQL;
         $this->execute($sql);

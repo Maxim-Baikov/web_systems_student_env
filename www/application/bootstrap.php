@@ -18,4 +18,9 @@ if (@mysql_select_db($dbname)) {
 } else die ("Не могу подключиться к базе данных $dbname!");
 
 require_once 'core/route.php';
-Route::start();
+require_once 'core/Router.php';
+
+foreach (glob("models/*/route.php") as $filename)
+{
+    include_once $filename;
+}
