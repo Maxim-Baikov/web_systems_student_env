@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateRoomConstraint extends AbstractMigration
+class CreateRequestConstraint extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,9 +22,13 @@ class CreateRoomConstraint extends AbstractMigration
      */
     public function up()
     {
-$sql = <<<SQL
-ALTER TABLE `room` ADD FOREIGN KEY ( `type` ) REFERENCES `webdb`.`description_room` (
-`type`
+        $sql = <<<SQL
+ALTER TABLE `request` ADD FOREIGN KEY ( `client_id` ) REFERENCES `webdb`.`client` (
+`id`
+) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+
+ALTER TABLE `request` ADD FOREIGN KEY ( `room_id` ) REFERENCES `webdb`.`room` (
+`id`
 ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
         $this->execute($sql);

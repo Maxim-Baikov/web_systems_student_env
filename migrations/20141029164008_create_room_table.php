@@ -27,7 +27,6 @@ class CreateRoomTable extends AbstractMigration
       `id` int(11) NOT NULL AUTO_INCREMENT,
       `type` int(11) NOT NULL,
       `number` int(11) NOT NULL,
-      `image` varchar(128) NOT NULL,
       PRIMARY KEY (`id`),
       KEY `type` (`type`)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;

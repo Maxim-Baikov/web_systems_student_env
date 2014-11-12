@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateTaskConstraint extends AbstractMigration
+class CreateRoomConstraint extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,9 +22,9 @@ class CreateTaskConstraint extends AbstractMigration
      */
     public function up()
     {
-$sql = <<<SQL
-ALTER TABLE `task` ADD FOREIGN KEY ( `shift_id` ) REFERENCES `webdb`.`shift` (
-`id`
+        $sql = <<<SQL
+ALTER TABLE `room` ADD FOREIGN KEY ( `type` ) REFERENCES `webdb`.`description_room` (
+`type`
 ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
         $this->execute($sql);

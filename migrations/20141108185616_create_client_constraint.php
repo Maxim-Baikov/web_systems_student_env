@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateDescriptionTable extends AbstractMigration
+class CreateClientConstraint extends AbstractMigration
 {
     /**
      * Change Method.
@@ -23,18 +23,7 @@ class CreateDescriptionTable extends AbstractMigration
     public function up()
     {
         $sql = <<<SQL
-CREATE TABLE IF NOT EXISTS `description_room` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) NOT NULL,
-  `category` varchar(64) NOT NULL,
-  `bedspace` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `cost` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `type` (`type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
+      ALTER TABLE `client` ADD FOREIGN KEY ( `user_id` ) REFERENCES `webdb`.`user` ( `id` ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
         $this->execute($sql);
     }

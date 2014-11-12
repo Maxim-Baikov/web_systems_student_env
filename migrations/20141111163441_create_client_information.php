@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateShiftConstraint extends AbstractMigration
+class CreateClientInformation extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,12 +22,10 @@ class CreateShiftConstraint extends AbstractMigration
      */
     public function up()
     {
-$sql = <<<SQL
-ALTER TABLE `shift` ADD FOREIGN KEY ( `staff_id` ) REFERENCES `webdb`.`staff` (
-`id`
-) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+    $sql = <<<SQL
+
 SQL;
-        $this->execute($sql);
+            $this->execute($sql);
     }
 
     /**

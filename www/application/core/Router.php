@@ -1,28 +1,54 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sysman
- * Date: 11/6/14
- * Time: 9:19 AM
- */
-
 class Router {
-    /**
-     * @var Router|null
-     */
-    static private $__instance = null;
 
-    private function __construct() {
+    private $routes = null;
+    private static $_instances = null;
+
+    private __constructor() {
+    $this->routes = array();
     }
 
-    /**
-     * @return Router
-     */
-    static public function getInstance() {
-        if (is_null(self::$__instance)) {
-            self::$__instance = new Router();
+    public static function Instance() {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new Router();
         }
-        return self::$__instance;
+        return self::$_instance;
     }
 
-} 
+    public function get($pattern, $callback) {
+        $this->set('GET', $pattern, $callback);
+    }
+
+    public function post($pattern, $callback) {
+        $this->set('POST', $pattern, $callback);
+    }
+
+    private function set($type, $pattern, $callback) {
+        if (!function_exists($callback)) {
+            new Exception("Method $callback not exists");
+        }
+        $this->routes[$type][$pattern] = $callback;
+    }
+
+    public function process($method, $uri) {
+        if (in_array($method, array('GET', 'POST'))) {
+            new Exception("Request method should be GET or POST");
+        }
+
+    // Выполнение роутинга
+    // Используем роуты $routes['GET'] или $routes['POST']  в зависимости от метода HTTP.
+        $active_routes = $this->routes[$method];
+
+    // Для всех роутов
+        foreach ($active_routes as $pattern => $callback) {
+        // Если REQUEST_URI соответствует шаблону - вызываем функцию
+            if (preg_match_all("/$pattern/", $uri, $matches) !== false) {
+            // вызываем callback
+                $callback();
+            // выходим из цикла
+                break;
+            }
+            $matches = array();
+        }
+    }
+}

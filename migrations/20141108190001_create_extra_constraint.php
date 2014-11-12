@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateRequestConstraint extends AbstractMigration
+class CreateExtraConstraint extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,14 +22,14 @@ class CreateRequestConstraint extends AbstractMigration
      */
     public function up()
     {
-$sql = <<<SQL
-ALTER TABLE `request` ADD FOREIGN KEY ( `client_id` ) REFERENCES `webdb`.`client` (
-`id`
-) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+        $sql = <<<SQL
+      ALTER TABLE `extra` ADD FOREIGN KEY ( `req_id` ) REFERENCES `webdb`.`request` (
+      `id`
+      ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 
-ALTER TABLE `request` ADD FOREIGN KEY ( `room_id` ) REFERENCES `webdb`.`room` (
-`id`
-) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+      ALTER TABLE `extra` ADD FOREIGN KEY ( `ser_id` ) REFERENCES `webdb`.`services` (
+       `id`
+       ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
         $this->execute($sql);
     }

@@ -17,10 +17,9 @@ if (@mysql_select_db($dbname)) {
     echo "";
 } else die ("Не могу подключиться к базе данных $dbname!");
 
-require_once 'core/route.php';
-require_once 'core/Router.php';
+include_once 'Router.php';
+// вызывает {module}.routes.php
+modules_load_routes();
 
-foreach (glob("models/*/route.php") as $filename)
-{
-    include_once $filename;
-}
+$r = Router::Instance();
+$r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
