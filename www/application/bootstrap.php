@@ -1,25 +1,13 @@
 <?php
 
-require_once 'core/model.php';
-require_once 'core/view.php';
-require_once 'core/controller.php';
-$dbhost = "localhost";
-$dbusername = "root";
-$dbpass = "root";
-$dbname = "webdb";
+include_once 'module.php';
 
-$dbconnect = mysql_connect($dbhost, $dbusername, $dbpass);
-if (!$dbconnect) {
-    echo("Не могу подключиться к серверу базы данных!");
-}
+//подключаем модули
+$module = new module();
+$module->load_all_modules();
 
-if (@mysql_select_db($dbname)) {
-    echo "";
-} else die ("Не могу подключиться к базе данных $dbname!");
+//include_once 'core/Router.php';
+// запускаем маршрутизатор
 
-include_once 'Router.php';
-// вызывает {module}.routes.php
-modules_load_routes();
-
-$r = Router::Instance();
+$r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

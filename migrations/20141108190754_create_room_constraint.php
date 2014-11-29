@@ -26,6 +26,9 @@ class CreateRoomConstraint extends AbstractMigration
 ALTER TABLE `room` ADD FOREIGN KEY ( `type` ) REFERENCES `webdb`.`description_room` (
 `type`
 ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+ALTER TABLE  `room` ADD FOREIGN KEY (  `id` ) REFERENCES  `webdb`.`task` (
+`link`
+) ON DELETE RESTRICT ON UPDATE RESTRICT ;
 SQL;
         $this->execute($sql);
     }

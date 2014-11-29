@@ -26,6 +26,10 @@ class CreateTaskConstraint extends AbstractMigration
 ALTER TABLE `task` ADD FOREIGN KEY ( `shift_id` ) REFERENCES `webdb`.`shift` (
 `id`
 ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+ALTER TABLE  `floors` ADD FOREIGN KEY (  `id` ) REFERENCES  `webdb`.`task` (
+`link`
+) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+
 SQL;
         $this->execute($sql);
     }
