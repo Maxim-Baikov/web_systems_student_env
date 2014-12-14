@@ -32,12 +32,6 @@ class Router
     private function set($type, $pattern, $callback)
     {
         $pattern = $this->constructPattern($pattern);
-        if(!is_array($callback)){
-            throw new Exception("It's not array!");
-        }
-        if (!method_exists($callback[0], $callback[1])) {
-            throw new Exception("Method $callback[1] not exists");
-        }
         $this->routes[$type][$pattern] = $callback;
     }
 
@@ -46,22 +40,25 @@ class Router
         if (!in_array($method, array('GET', 'POST'))) {
             throw new Exception("Request method should be GET or POST");
         }
-        var_dump($this->routes);
         // Выполнение роутинга
         // Используем роуты $routes['GET'] или $routes['POST']  в зависимости от метода HTTP.
         $active_routes = $this-> routes[$method];
         // Для всех роутов
+
         foreach ($active_routes as $pattern => $callback) {
         // Если REQUEST_URI соответствует шаблону - вызываем функцию
 
             if (preg_match_all("/$pattern/", $uri, $matches) !== 0) {
             // вызываем callback
                 $posable_attribute = array();
-                foreach(array_slice($matches,1) as $value){
-                    $posable_attribute[] = array_pop($value);
-                }
-                $e = new $callback[0]();
-                call_user_func_array(array($e, $callback[1]), $posable_attribute);
+                if(preg_match_all('/\d+/',$uri,$match)){
+                    foreach ($match as $value) {
+                        $posable_attribute[] = array_pop($value);
+                    }
+                 }
+                 call_user_func_array($callback, $posable_attribute);
+
+
                 // выходим из цикла
                 break;
             }
@@ -72,10 +69,9 @@ class Router
     private function constructPattern($pattern)
     {
         $pattern = str_replace('/', '\/', $pattern);
-        preg_match_all("/(?<=:)[a-zA-Z0-9]++/", $pattern, $matches);
+        preg_match_all("/(?<=:)[a-zA-Z0-9]+/", $pattern, $matches);
         foreach ($matches[0] as $value) {
-
-            $pattern = str_replace(":$value", "/([^/]+)$/", $pattern);
+            $pattern = str_replace(":$value", '\d+', $pattern);
         }
         $pattern = "^$pattern$";
         return $pattern;

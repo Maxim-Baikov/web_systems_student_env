@@ -1,14 +1,22 @@
 <?php
 
     $r = Router::getInstance();
-    $r->get("", function() {
-        print('Welcome to the home page');
+
+
+    $r->get('/Room',function (){
+        print('Welcome to the room page');
     });
 
-    $r->get('/Client/:memberName', function($memberName) {
+    $r->get('/Client/:memberName',function ($memberName) {
         print( 'I\'m viewing ' . $memberName . '\'s profile.' );
+        });
+
+    $r->get('/ContactUs', function () {
+        print( 'This action will be fired only if a GET request will occure');
     });
 
-    $r->post('/ContactUs', function() {
-        print( 'This action will be fired only if a POST request will occure');
-    });
+
+
+
+
+
