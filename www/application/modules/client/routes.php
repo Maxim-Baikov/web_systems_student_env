@@ -4,7 +4,7 @@
 
 
     $r->get('/Room',function (){
-        print('Welcome to the room page');
+        print('Welcome to the Room page');
     });
 
     $r->get('/Client/:memberName',function ($memberName) {
@@ -14,7 +14,6 @@
     $r->get('/ContactUs', function () {
         print( 'This action will be fired only if a GET request will occure');
     });
-
 
 
 

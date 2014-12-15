@@ -8,6 +8,7 @@ class Module {
         $this->includeFunc(glob("application/core/*.php"));
         $this->includeFunc(glob("application/modules/*/controller/*.php"));
         $this->includeFunc(glob("application/modules/*/routes.php"));
+
     }
     private function includeFunc($pattern){
         if(!is_array($pattern))
